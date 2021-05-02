@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "loginserver-9d29a": {
+      "hosting": {
+        "fotofirebase": [
+          "loginserver-9d29a"
+        ]
+      }
+    }
+  }
+}

@@ -1,27 +1,19 @@
-# Fotofirebase
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
 
-## Development server
+-- instalar firebase
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+ng add @angular/fire
 
-## Code scaffolding
+-- en enviroments.ts
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyB1Ke0RJ8yUiUbxKx4wsa5k0vw8KbypaSk",
+    authDomain: "loginserver-9d29a.firebaseapp.com",
+    projectId: "loginserver-9d29a",
+    storageBucket: "loginserver-9d29a.appspot.com",
+    messagingSenderId: "986187586678",
+    appId: "1:986187586678:web:256deb65c1756edf1a1357"
+  }
+};
