@@ -1,11 +1,12 @@
 
 
--- instalar firebase
+## instalar firebase
 
 ng add @angular/fire
 
--- en enviroments.ts
+## en enviroments.ts
 
+```
 export const environment = {
   production: false,
   firebase: {
@@ -17,3 +18,7 @@ export const environment = {
     appId: "1:986187586678:web:256deb65c1756edf1a1357"
   }
 };
+```
+
+## importacion en el module
+
