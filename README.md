@@ -5,7 +5,7 @@
 ng add @angular/fire
 
 ## en enviroments.ts
-
+Realizar la importacion de las claves de la aplicacion de firebase
 ```
 export const environment = {
   production: false,
@@ -22,3 +22,33 @@ export const environment = {
 
 ## importacion en el module
 
+en el app.module.ts
+```
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
+
+  imports: [
+    BrowserModule,
+    APP_ROUTES,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
+    
+    
+  ],
+
+
+```
+
+
+
+# Angular directives
+
+EventEmitter
+- sirve para informar al padre que algo sucedio desde la directiva
+
+ ElementRef
+ - sirve para tener una conexion directa con el html que contiene la directiva
+
+  HostListener 
+  - crear eventos o callbacks cuando algo suceda, cuando alguien haga click o el mouse este encima 

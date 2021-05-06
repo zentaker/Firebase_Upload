@@ -1,5 +1,7 @@
   
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { FileItem } from 'src/app/models/file-item.js';
+import { CargaFirmaService } from 'src/app/services/carga-firma.service.js';
 import SignaturePad from "../../../../node_modules/signature_pad/dist/signature_pad.js";
 
 
@@ -19,7 +21,11 @@ import SignaturePad from "../../../../node_modules/signature_pad/dist/signature_
 export class SignaturepadComponent implements OnInit {
   @ViewChild('sPad', {static: true}) signaturePadElement;
   signaturePad: any;
-  constructor() { }
+
+
+  firma: FileItem[] = [];
+
+  constructor(public cargafirmaservice: CargaFirmaService) { }
 
   ngOnInit(): void {
   }
@@ -28,25 +34,20 @@ export class SignaturepadComponent implements OnInit {
     this.signaturePad = new SignaturePad(this.signaturePadElement.nativeElement);
   }
 
-  changeColor() {
-    const r = Math.round(Math.random() * 255);
-    const g = Math.round(Math.random() * 255);
-    const b = Math.round(Math.random() * 255);
-    const color = 'rgb(' + r + ',' + g + ',' + b + ')';
-    this.signaturePad.penColor = color;
-  }
+
 
   clear() {
     this.signaturePad.clear();
   }
 
-  undo() {
-    const data = this.signaturePad.toData();
-    if (data) {
-      data.pop(); // remove the last dot or line
-      this.signaturePad.fromData(data);
-    }
+  //guardar la firma 
+
+  guardar(dataURL) {
+    console.log(this.signaturePad.toDataURL());
+
   }
+
+
 
   download(dataURL, filename) {
     if (navigator.userAgent.indexOf('Safari') > -1 && navigator.userAgent.indexOf('Chrome') === -1) {
@@ -62,7 +63,9 @@ export class SignaturepadComponent implements OnInit {
       a.click();
 
       window.URL.revokeObjectURL(url);
+
     }
+    
   }
 
   dataURLToBlob(dataURL) {
@@ -75,6 +78,7 @@ export class SignaturepadComponent implements OnInit {
     for (let i = 0; i < rawLength; ++i) {
       uInt8Array[i] = raw.charCodeAt(i);
     }
+    //return new Blob([uInt8Array], { type: contentType });
     return new Blob([uInt8Array], { type: contentType });
   }
 
@@ -83,25 +87,19 @@ export class SignaturepadComponent implements OnInit {
       alert('Please provide a signature first.');
     } else {
       const dataURL = this.signaturePad.toDataURL();
-      this.download(dataURL, 'signature.png');
+      //const nuevo = this.download(dataURL, 'signature.png');
+
+      const blob = this.dataURLToBlob(dataURL);
+      
+      //informacion de la imagen
+      console.log(blob);
+
+      //
+      //this.archivos.push(nuevoArchivo);
+      
+    
     }
   }
 
-  saveJPG() {
-    if (this.signaturePad.isEmpty()) {
-      alert('Please provide a signature first.');
-    } else {
-      const dataURL = this.signaturePad.toDataURL('image/jpeg');
-      this.download(dataURL, 'signature.jpg');
-    }
-  }
 
-  saveSVG() {
-    if (this.signaturePad.isEmpty()) {
-      alert('Please provide a signature first.');
-    } else {
-      const dataURL = this.signaturePad.toDataURL('image/svg+xml');
-      this.download(dataURL, 'signature.svg');
-    }
-  }
 }

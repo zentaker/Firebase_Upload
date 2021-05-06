@@ -7,7 +7,8 @@ import { FileItem } from '../models/file-item';
 @Injectable({
   providedIn: 'root'
 })
-export class CargaImagenesService {
+export class CargaFirmaService {
+
   private CARPETA_IMAGENES = 'img';
 
   constructor(private db: AngularFirestore) { }
